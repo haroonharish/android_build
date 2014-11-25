@@ -870,9 +870,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   common.CheckSize(boot_img.data, "boot.img", target_info)
   common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
 
-  if OPTIONS.backuptool:
-    script.ShowProgress(0.02, 10)
-    script.MountSys("restore", sys_mount)
+  device_specific.FullOTA_PostValidate()
 
   script.WriteRawImage("/boot", "boot.img")
 
